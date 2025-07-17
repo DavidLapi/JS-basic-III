@@ -211,7 +211,7 @@ const combinarArrays = function(arr1, arr2) {
     return [...arr1, ...arr2]; //Metodo Spread
 }
 const combinarArraysConcat = function(arr1, arr2) {
-    return arr1.concat(arr2);
+    return arr1.concat(arr2); //Metodo concat
 }
 console.log("Array 1: "+array1+" | Array 2: "+array2);
 console.log("Resultado 1:");
@@ -220,14 +220,75 @@ console.log("Resultado 2:");
 console.log(combinarArraysConcat(array1, array2));
 
 //Ejercicio 6: Escribe una función que tome un array de números como argumento y devuelva el número máximo dentro del array.
+console.log("\nEjercicio 6:");
+arrayNum = [1, 5, 2, 9, 100, 3, 90];
+const maxNum = function(array) {
+    let numMax = array[0];
+    for(i=0; i<array.length; i++) {
+        if(array[i] > numMax) {
+            numMax = array[i];
+        }
+    }
+    return numMax;
+}
+console.log("Array: "+arrayNum);
+console.log("Número máximo: ");
+console.log(maxNum(arrayNum));
 
 //Ejercicio 7: Escribe una función que tome un array de números como argumento y devuelva el número mínimo dentro del array.
+console.log("\nEjercicio 7:");
+arrayNum = [-10, 5, 2, 9, 3, 90];
+const minNum = function(array) {
+    let numMin = array[0];
+    for(i=0; i<array.length; i++) {
+        if(array[i] < numMin) {
+            numMin = array[i];
+        }
+    }
+    return numMin;
+}
+console.log("Array: "+arrayNum);
+console.log("Número mínimo: ");
+console.log(minNum(arrayNum));
 
 //Ejercicio 8: Escribe una función que tome un array y un elemento como argumentos, y devuelva la cantidad de veces que el elemento aparece en el array.
+console.log("\nEjercicio 8: ");
+let frutas = ["manzana", "pera", "platano", "manzana", "platano", "manzana"];
+let fruta = "platano";
+const apariciones = function(array, e) {
+    let num = 0;
+    for(i=0; i<array.length; i++) {
+        if(array[i] == e) {
+            num++;
+        }
+    }
+    return num;
+}
+console.log("Lista de frutas: "+frutas+" | Buscar fruta: "+fruta);
+console.log("Número de veces de "+fruta+" encontrada:");
+console.log(apariciones(frutas, fruta));
 
 //Ejercicio 9: Escribe una función que tome un array como argumento y devuelva un nuevo array sin elementos duplicados.
+console.log("\nEjercicio 9: ");
+let comidaArr = ["cachopo", "arroz", "patatas", "cachopo", "patatas", "cachopo", "costilla", "pimientos", "cachopo"];
+const eliminaDuplicados = function(array) {
+    //return [...new Set(array)]; // Metodo Set --> más eficiente
+    return array.filter((elemento, indice) => array.indexOf(elemento) === indice); //Metodo filter
+}
+console.log("Comida con repeticiones: "+comidaArr);
+console.log("Comida sin repetir:");
+console.log(eliminaDuplicados(comidaArr));
 
 //Ejercicio 10: Escribe una función que tome un array como argumento y devuelva un nuevo array con los elementos en orden inverso.
+console.log("\nEjercicio 10:");
+let arrayCosas = ["cachopo", 7, true, [1, 2, 3]];
+//Metodo sencillo (reverse)
+const inverso = (array) => array.reverse();
+
+console.log("Array: "+arrayCosas);
+console.log("Array en orden inverso:");
+console.log(inverso(arrayCosas));
+
 
 //Objetos literales
 
