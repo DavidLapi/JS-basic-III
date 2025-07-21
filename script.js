@@ -291,23 +291,169 @@ console.log(inverso(arrayCosas));
 
 
 //Objetos literales
+console.log("\nObjetos literales: ");
 
 //Ejercicio 1: Escribe una función que tome un objeto literal con una propiedad "nombre" y devuelva el valor de esa propiedad.
+console.log("\nEjercicio 1: ");
+let info = {
+    nombre: "David",
+    edad: 26,
+    color: "marron"
+}
+
+const nombreObj = (obj) => obj.nombre;
+
+console.log("Nombre: " + nombreObj(info));
 
 //Ejercicio 2: Escribe una función que tome un objeto literal con una propiedad "edad" y un número como argumentos, y actualice el valor de la propiedad "edad" con el número dado.
+console.log("\nEjercicio 2: ");
+let edad = 12;
+
+const edadAct = function(obj, num) {
+    //Comprobacion de numero
+    if (isNaN(num) && typeof num !== 'number') {
+        return "Error: Elige un número adecuado";
+    }
+    obj.edad = num;
+    return obj;
+}  
+console.log("Objeto actual: ", info);
+console.log("Objeto actualizado: ", edadAct(info, edad));
 
 //Ejercicio 3: Escribe una función que tome un objeto literal y una cadena de texto como argumentos, y agregue una nueva propiedad al objeto con la cadena de texto como nombre y un valor inicial de null.
+console.log("\nEjercicio 3: ");
+
+let texto = "telefono";
+const agregarProp = function(obj, texto) {
+    obj[texto] = null;
+    return obj;
+}
+console.log("Objeto actual: ", info);
+console.log("Objeto actualizado: ", agregarProp(info, texto));
 
 //Ejercicio 4: Escribe una función que tome un objeto literal y una cadena de texto como argumentos, y elimine la propiedad del objeto con el nombre dado.
+console.log("\nEjercicio 4: ");
+texto = "nombre";
+const eliminarProp = function(obj, texto) {
+    delete obj[texto];
+    return obj;
+}
+console.log("Objeto actual: ", info);
+console.log("Objeto actualizado: ", eliminarProp(info, texto));
+
 
 //Ejercicio 5: Escribe una función que tome un objeto literal como argumento y devuelva la cantidad de propiedades que tiene.
+console.log("\nEjercicio 5: ");
+const cantidadProp = function(obj) {
+    let cantidad = Object.keys(obj).length;
+    return cantidad;
+}
+console.log("Objeto actual: ", info);
+console.log("Número de propiedades del objeto: ", cantidadProp(info));
 
 //Ejercicio 6: Escribe una función que tome un objeto literal y una cadena de texto como argumentos, y devuelva true si el objeto tiene una propiedad con ese nombre, o false si no la tiene.
+console.log("\nEjercicio 6: ");
+texto = "color";
+//con hasOwnProperty():
+const compruebaProp = function(obj, texto) {
+    if(obj.hasOwnProperty(texto)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+//con el operador in:
+const compruebaProp2 = function(obj, texto) {
+    if(texto in obj) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+console.log("Objeto actual:", info);
+console.log("Buscamos la propiedad:", texto);
+console.log("Resultado 1: ", compruebaProp(info, texto));
+console.log("Resultado 2: ", compruebaProp2(info, texto));
 
 //Ejercicio 7: Escribe una función que tome un objeto literal como argumento y devuelva un array con todos los valores de sus propiedades.
+console.log("\nEjercicio 7: ");
+
+const arrayObj = function(obj) {
+    let valores = Object.values(obj);
+    return valores;
+}
+
+console.log("Objeto actual:", info);
+console.log("Array con los valores del objeto:", arrayObj(info));
 
 //Ejercicio 8: Escribe una función que tome dos objetos literales como argumentos y devuelva true si tienen las mismas propiedades y los mismos valores en esas propiedades, o false si son diferentes.
+console.log("\nEjercicio 8: ");
+
+let info2 = {
+    edad: 12,
+    ojos: 'marron',
+    telefono: null
+}
+
+const compararObjs = function(obj1, obj2) {
+    let keys1 = Object.keys(obj1);
+    let keys2 = Object.keys(obj2);
+
+    if (keys1.length !== keys2.length) {
+        return ("No tienen la misma longitud: ", false);
+    }
+
+    for (let key of keys1) {
+        if (!obj2.hasOwnProperty(key) || obj1[key] !== obj2[key]) {
+            return "No tienen las mismas propiedades ni los mismos valores: ", false;
+        }
+    }
+
+    return true;
+} 
+
+console.log("Objeto 1: ", info);
+console.log("Objeto 2: ", info2);
+console.log("¿Son iguales? --> ", compararObjs(info, info2));
 
 //Ejercicio 9: Escribe una función que tome un objeto literal como argumento y devuelva una copia exacta de ese objeto.
+console.log("\nEjercicio 9: ");
+
+const copiaExacta1 = function(obj) {
+    let copia = Object.assign({}, obj); //Copia superficial
+    copia.edad = 34; //Modificamos la copia
+    return copia;
+}
+
+const copiaExacta2 = function(obj) {
+    let copia = { ...obj}; //Spread
+    copia.color = "verde"; //Modificamos la copia
+    return copia;
+}
+
+console.log("Objeto actual: ", info);
+console.log("Resultado 1: ", copiaExacta1(info));
+console.log("Resultado 2: ", copiaExacta2(info));
 
 //Ejercicio 10: Escribe una función que tome dos objetos literales como argumentos y devuelva un nuevo objeto con todas las propiedades de ambos objetos. Si hay propiedades con el mismo nombre, el valor del segundo objeto deberá prevalecer.
+console.log("\nEjercicio 10: ");
+
+let comida = {
+    nombre: "Cachopo",
+    color: "marron",
+    cantidad: 5,
+}
+
+const newObject = function(obj1, obj2) {
+    return { ...obj1, ...obj2};
+}
+
+const newObjectAlt = function(obj1, obj2) {
+    return Object.assign({}, obj1, obj2);
+}
+
+console.log("Objeto 1: ", info);
+console.log("Objeto 2: ", comida);
+console.log("Nuevo objeto: ", newObject(info, comida));
+console.log("Nuevo objeto alternativo: ", newObjectAlt(info, comida));
